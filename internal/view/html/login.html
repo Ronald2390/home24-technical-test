@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#welcomePanel").hide();
+            
+            $("form#loginForm").submit(function (event) {
+                var formData = {
+                    'email': $("#email").val(),
+                    'password': $("#password").val(),
+                };
+                console.log(formData);
+
+                $.ajax({
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    dataType:"json",
+                    type: "POST",
+                    url: "http://127.0.0.1:8089/v1/login",
+                    // processData: false,
+                    // encode: true,
+                    success: function(data){console.log(data);
+                        $("#loginPanel").hide();
+                        $("#welcomePanel").html("Welcome "+data.user.name+",");
+                        $("#welcomePanel").show();
+                    },
+                    error: function(data){
+                        app.log(data);
+                    },
+                    }).done(function (data) {
+                        
+                    });
+                    
+                    event.preventDefault();
+                });
+            });
+    </script>
+</head>
+<body>
+    <div id="loginPanel">
+        <form id="loginForm">
+            <h1> Login</h1>
+            Email: <input type="email" name="email" id="email"/>
+            <br />
+            Password:<input type="password" name="password" id="password"/>
+            <br />
+            <input type="submit" value="Login"/>
+        </form>
+    </div>
+    <div id="welcomePanel">
+
+    </div>
+</body>
+</html>
