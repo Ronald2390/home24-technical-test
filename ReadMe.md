@@ -19,32 +19,33 @@ browse the html from specific path in browser or just double click or open the h
 ## API
 
 ### Login
-[POST] 127.0.0.1:8089/v1/login 
-Request Body:
+- [POST] 127.0.0.1:8089/v1/login 
+- Request Body:
 {
     "email":"user@home24.com",
     "password":"user"
 }
-curl command: 
+- curl command: 
 curl -X POST 127.0.0.1:8089/v1/login --data $'{"email":"user@home24.com","password":"user"}'
 
 ### Logout
-[POST] 127.0.0.1:8089/v1/logout (no need request body and url params)
-curl command:
+- [POST] 127.0.0.1:8089/v1/logout (no need request body and url params)
+- curl command:
 curl -X POST 127.0.0.1:8089/v1/logout -H "Authorization:session {token_retrieved_on_login}"
 
 ### Get Login Session
-[GET] 127.0.0.1:8089/v1/session 
-curl command:
+- [GET] 127.0.0.1:8089/v1/session 
+- curl command:
 curl -X GET 127.0.0.1:8089/v1/session -H "Authorization:session {token_retrieved_on_login}"
 
 ### Change Password
-[PUT] 127.0.0.1:8089/v1/users/password
+- [PUT] 127.0.0.1:8089/v1/users/password
+- Request Body
 {
     "oldPassword": "user",
     "newPassword": "newPassword"
 }
-curl command: 
+- curl command: 
 curl -X PUT 127.0.0.1:8089/v1/users/password -H "Authorization:session {token_retrieved_on_login}" --data $'{"oldPassword": "user","newPassword": "newPassword"}'
 
 ## Notes
