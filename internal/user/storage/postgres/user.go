@@ -124,29 +124,6 @@ func (s *PostgresStorage) Update(ctx context.Context, updatedUser *model.User) e
 	updatedUser.UpdatedAt = time.Now()
 	updatedUser.UpdatedBy = appcontext.UserID(ctx)
 
-	fmt.Printf("Query: %s", `
-	UPDATE "user" 
-	SET
-		"name" = :name,
-		"email" = :email,
-		"address" = :address,
-		"password" = :password,
-		"updatedAt" = :updatedAt,
-		"updatedBy" = :updatedBy
-	WHERE
-		"id" = :id
-	RETURNING
-		"id", "name","email","address","password","createdBy", "createdAt", "updatedAt", "updatedBy"`)
-	fmt.Printf("arg: %v", map[string]interface{}{
-		"id":        updatedUser.ID,
-		"name":      updatedUser.Name,
-		"email":     updatedUser.Email,
-		"address":   updatedUser.Address,
-		"password":  updatedUser.Password,
-		"updatedAt": updatedUser.UpdatedAt,
-		"updatedBy": updatedUser.UpdatedBy,
-	})
-
 	rows, err := s.db.NamedQuery(`
 	UPDATE "user" 
 	SET
