@@ -16,6 +16,9 @@ Listen to port 8089 by default
 ### To access the html:
 browse the html from specific path in browser or just double click or open the html in browser 
 
+## HTML
+HTML file located in internal/view/html. there is a login.html page in there which can be opened with browser.
+
 ## API
 
 ### Login
