@@ -1,4 +1,4 @@
-# home24-technical-test
+# simple-user-service
 
 ## Requirement
 
